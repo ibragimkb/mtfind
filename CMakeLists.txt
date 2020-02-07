@@ -6,6 +6,8 @@ project(mtfind)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+set( CMAKE_BUILD_TYPE RELEASE )
+
 find_package(Threads REQUIRED)
 
 include_directories(include)
