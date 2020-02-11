@@ -7,6 +7,7 @@ FindApp::FindApp(unsigned int queueSize)
     allRead = false;
     maxQueue = queueSize;
     hwConcurrency = std::thread::hardware_concurrency() - 1;
+    if (hwConcurrency < 2) hwConcurrency = 2;
     queueMtx = new std::mutex[hwConcurrency];
     queueData = new std::queue<stringParams>[hwConcurrency];
 }
@@ -110,7 +111,6 @@ void FindApp::readFile()
                 if (hwConcurrency == thread) thread = 0;
             }
             line++;
-            /*std::this_thread::sleep_for(std::chrono::milliseconds(100));*/
         }
         file.close();
     }
